@@ -1,4 +1,32 @@
-<h1>Welcome <%= user.name %>!</h1>
-<form action="/signout" method="POST">
-    <button type="submit">Sign out</button>
-</form>
+<div class="grid grid-rows-[1fr_8fr] h-full">
+    <div class="flex w-screen align-center justify-center p-7 border-b-1 border-solid">
+        <h1 class="font-bold text-4xl">Welcome <%= user.name %>!</h1>
+    </div>
+
+    <div class="flex">
+        <sidebar class="p-3 flex flex-col max-w-200 h-full flex-none border-r-1 border-solid">
+            <li class="grow list-none pt-2">
+                <ul><a href="/notes">Dashboard</a></ul>
+            </li>
+            <form class="flex-none" action="/signout" method="POST">
+                <button class="btn-logout" type="submit">Log out</button>
+            </form>
+        </sidebar>
+
+        <content class="flex flex-col grow">
+            <div class="flex flex-col grow overflow-y-auto">
+                <% notes.forEach(note => { %>
+                    <div class="flex p-3 items-center bg-blue-400">                    
+                        <a href="/notes/<%= note._id %>" class="grow"><%= note.title %></a>
+                        <a href="/notes/edit/<%= note._id %>" class="btn-primary">Edit</a>
+                        <a href="/notes/delete/<%= note._id %>" class="btn-logout">Delete</a>
+                    </div>
+                <% }) %>
+            </div>
+            <bottombar class="p-3 flex flex-row-reverse ">
+                <a href="#" class="btn-primary">Create</a>
+            </bottombar>
+        </content>
+    </div>
+</div>
+

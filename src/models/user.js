@@ -5,7 +5,7 @@ const SALT = 10;
 
 const userSchema = new mongodb.Schema({
     username: { type: String, required: true, unique: true },
-    password: { type: String, required: true }
+    password: { type: String, required: true, minLength: 5 },
 });
 
 userSchema.methods.comparePassword = async function (candidatePassword) {

@@ -32,8 +32,10 @@ exports.authenticate = function () {
                 req.isAuthenticated = false;
                 return next();
             }
+
             req.user = user;
             req.isAuthenticated = true;
+
             return next();
         })(req, res, next);
     }

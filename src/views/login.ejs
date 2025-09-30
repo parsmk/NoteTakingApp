@@ -1,27 +1,29 @@
-<div class="block mx-auto my-auto bg-gray-100 p-10 rounded">
-    <% if (typeof error !== "undefined") {%>
-        <div class="text-red-500 text-center">
-            <b>Message: </b> <br/>
-            <p><%= error %></p>
-        </div>
-    <% } %>
+<div class="flex w-full h-full">
+    <div class="block mx-auto my-auto bg-gray-100 p-10 rounded max-w-200">
+        <% if (typeof error !== "undefined") {%>
+            <div class="text-red-500 text-center">
+                <b>Message: </b> <br/>
+                <p><%= error %></p>
+            </div>
+        <% } %>
 
-    <h1 class="text-center text-3xl font-bold py-3">Login</h2>
+        <h1 class="text-center text-3xl font-bold py-3">Login</h2>
 
-    <form class="flex flex-col" action="/login" method="POST">
-        <div class="form-group">                
-            <label for="username"> Username: </label>
-            <input name="username" type="text" placeholder="username..." required />
-        </div>
+        <form class="flex flex-col" action="/login" method="POST">
+            <div class="form-group">                
+                <label for="username"> Username: </label>
+                <input name="username" type="text" placeholder="username..." required />
+            </div>
 
-        <div class="form-group">
-            <label for="password"> Password: </label>
-            <input name="password" type="password" placeholder="password... " required />
-        </div>
+            <div class="form-group">
+                <label for="password"> Password: </label>
+                <input name="password" type="password" placeholder="password... " required />
+            </div>
 
-        <div class="flex align-items justify-center mt-5">
-            <button class="btn" type="submit">Sign in</button>
-            <button class="btn" onclick="location.href='/signUp'">Sign Up</button>
-        </div>
-    </form>
+            <div class="flex align-items justify-center mt-5">
+                <button class="btn-primary" type="submit">Sign in</button>
+                <button class="btn-primary" onclick="location.href='/signUp'">Sign Up</button>
+            </div>
+        </form>
+    </div>
 </div>

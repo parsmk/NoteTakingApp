@@ -1,7 +1,11 @@
 @import "tailwindcss";
 
-.btn {
+.btn-primary {
     @apply py-2 mx-1 px-4 bg-blue-900 rounded-full text-white hover:bg-black cursor-pointer
+}
+
+.btn-logout {
+    @apply py-2 mx-1 px-4 bg-red-500 rounded-full text-white hover:bg-red-900 cursor-pointer
 }
 
 .form-group {
