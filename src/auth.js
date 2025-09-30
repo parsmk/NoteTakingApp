@@ -1,23 +1,61 @@
 const passport = require("passport");
-const bcrypt = require("bcrypt");
+const JWTStrategy = require("passport-jwt").Strategy;
+const jwt = require("jsonwebtoken");
 
-export function configureSession() {
-    return session({
-        name: "sid",
-        secret: process.env.secret,
-        resave: false,
-        saveUninitialized: false
-    })
+const strategyOpts = {
+    jwtFromRequest: (req) => {
+        let token = null;
+        if (req && req.cookies) {
+            token = req.cookies['jwt'];
+        }
+
+        return token;
+    },
+    secretOrKey: process.env.secret
 }
 
-export function setupPassport() {
-
+const cookieOpts = {
+    httpOnly: true,
+    sameSite: "lax"
 }
 
-export function auth() {
-    return [
-        configureSession(),
-        passport.initialize(),
-        passport.session()
-    ]
+passport.use(new JWTStrategy(strategyOpts, async function (payload, done) {
+    return done(null, payload);
+}));
+
+exports.authenticate = function () {
+    return (req, res, next) => {
+        passport.authenticate("jwt", { session: false }, (err, user) => {
+            if (err) return next(err);
+
+            if (!user) {
+                req.isAuthenticated = false;
+                return next();
+            }
+            req.user = user;
+            req.isAuthenticated = true;
+            return next();
+        })(req, res, next);
+    }
 }
+
+exports.initializeCookie = function (candidate, res) {
+    const token = jwt.sign(
+        {
+            id: candidate.id,
+            username: candidate.username
+        },
+        process.env.secret,
+        { expiresIn: "1h" }
+    );
+
+    return res.cookie("jwt", token, cookieOpts);
+}
+
+exports.deleteCookie = function (res) {
+    res.clearCookie("jwt", cookieOpts);
+}
+
+exports.setup = [
+    passport.initialize(),
+]

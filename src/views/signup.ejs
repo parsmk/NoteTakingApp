@@ -6,16 +6,18 @@
         </div>
     <% } %>
 
-    <form action="/login" method="POST">
+    <form action="/signUp" method="POST">
         <label for="username">Username</label>
         <input name="username" type="text" placeholder="username..." required />
 
         <label for="password">Password</label>
         <input name="password" type="password" placeholder="password... " required />
+        
+        <label for="confirmPassword">Confirm Password</label>
+        <input name="confirmPassword" type="password" placeholder="confirm password... " required />
 
-        <button type="submit">Sign in</button>
-        <button type="button" onclick="location.href='/signUp'">Sign Up</button>
+        <button type="submit">Sign Up</button>
     </form>
 </div>
 
-<script src="/src/public/js/login.js"></script>
+<script src="/src/public/js/signup.js"></script>
