@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+.btn {
+    @apply py-2 mx-1 px-4 bg-blue-900 rounded-full text-white hover:bg-black cursor-pointer
+}
+
+.form-group {
+    @apply grid gap-3 grid-cols-3
+}
+
+.form-group input {
+    @apply outline-1 outline-solid col-span-2 px-2
+}
+
+.form-group * {
+    @apply py-1 my-2
+}

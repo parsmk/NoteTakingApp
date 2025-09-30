@@ -1,21 +1,27 @@
-<div>
+<div class="block mx-auto my-auto bg-gray-100 p-10 rounded">
     <% if (typeof error !== "undefined") {%>
-        <div>
+        <div class="text-red-500 text-center">
             <b>Message: </b> <br/>
             <p><%= error %></p>
         </div>
     <% } %>
 
-    <form action="/login" method="POST">
-        <label for="username">Username</label>
-        <input name="username" type="text" placeholder="username..." required />
+    <h1 class="text-center text-3xl font-bold py-3">Login</h2>
 
-        <label for="password">Password</label>
-        <input name="password" type="password" placeholder="password... " required />
+    <form class="flex flex-col" action="/login" method="POST">
+        <div class="form-group">                
+            <label for="username"> Username: </label>
+            <input name="username" type="text" placeholder="username..." required />
+        </div>
 
-        <button type="submit">Sign in</button>
-        <button type="button" onclick="location.href='/signUp'">Sign Up</button>
+        <div class="form-group">
+            <label for="password"> Password: </label>
+            <input name="password" type="password" placeholder="password... " required />
+        </div>
+
+        <div class="flex align-items justify-center mt-5">
+            <button class="btn" type="submit">Sign in</button>
+            <button class="btn" onclick="location.href='/signUp'">Sign Up</button>
+        </div>
     </form>
 </div>
-
-<script src="/src/public/js/login.js"></script>
