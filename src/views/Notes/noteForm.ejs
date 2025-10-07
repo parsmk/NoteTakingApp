@@ -1,0 +1,32 @@
+<form 
+    action="/notes/<%= typeof note !== 'undefined' && note ? `${action}/${note._id}` : action %>"
+    method="POST" 
+    class="flex flex-col items-center h-full pt-5 px-5"
+>
+    <div class="flex flex-col grow overflow-y-auto w-1/2 px-2">
+        <% if (typeof error !== 'undefined') { %>
+            <div class="bg-red-500 p-5 w-full">
+                <%= error %>
+            </div>
+        <% } %>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <% if (typeof note !== 'undefined') { %>
+                <input name="title" type="text" value="<%= note.title %>" required />
+            <% } else { %>
+                <input name="title" type="text" placeholder="Title..." required />
+            <% } %>
+        </div>
+        <div class="form-group h-3/4">
+            <label for="text">Note</label>
+            <% if (typeof note !== 'undefined') { %>
+                <textarea name="text" type="text" required> <%= note.text %> </textarea>
+            <% } else { %>
+                <textarea name="text" placeholder="Note..." required></textarea>
+            <% } %>
+        </div>
+    </div>
+    <bottombar class="p-3 flex w-full flex-row-reverse ">
+        <button type="submit" class="btn-primary">Save</button>
+    </bottombar>
+</form>

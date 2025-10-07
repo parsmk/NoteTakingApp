@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head> <%- include("../headers.ejs") %> </head>
+    
+    <body>
+        <main class="h-screen w-screen">
+            <div class="grid grid-rows-[1fr_8fr] h-full">
+                <div class="flex w-screen align-center justify-center p-7 border-b-1 border-solid">
+                    <h1 class="font-bold text-4xl">Welcome <%= user.name %>!</h1>
+                </div>
+
+                <div class="flex">
+                    <sidebar class="p-3 flex flex-col max-w-200 h-full flex-none border-r-1 border-solid">
+                        <li class="grow list-none pt-2">
+                            <ul><a href="/notes">Dashboard</a></ul>
+                        </li>
+                        <form class="flex-none" action="/signout" method="POST">
+                            <button class="btn-logout" type="submit">Log out</button>
+                        </form>
+                    </sidebar>
+
+                    <content class="flex flex-col grow">
+                        <%- include(fileName) %>
+                    </content>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
+

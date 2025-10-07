@@ -9,11 +9,15 @@
 }
 
 .form-group {
-    @apply grid gap-3 grid-cols-3
+    @apply grid gap-3 grid-cols-[100px_1fr]
 }
 
 .form-group input {
-    @apply outline-1 outline-solid col-span-2 px-2
+    @apply outline-1 outline-solid px-2
+}
+
+.form-group textarea {
+    @apply outline-1 outline-solid px-2
 }
 
 .form-group * {

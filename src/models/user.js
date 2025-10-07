@@ -4,8 +4,8 @@ const bcrypt = require("bcrypt");
 const SALT = 10;
 
 const userSchema = new mongodb.Schema({
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true, minLength: 5 },
+    username: { type: String, required: true, unique: true, minLength: 3, maxLength: 50 },
+    password: { type: String, required: true },
 });
 
 userSchema.methods.comparePassword = async function (candidatePassword) {

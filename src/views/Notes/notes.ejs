@@ -1,0 +1,12 @@
+<div class="flex flex-col grow overflow-y-auto">
+    <% notes.forEach(note => { %>
+        <div class="flex p-3 items-center">                    
+            <a href="/notes/<%= note._id %>" class="grow"><%= note.title %></a>
+            <a href="/notes/edit/<%= note._id %>" class="btn-primary">Edit</a>
+            <a href="/notes/delete/<%= note._id %>" class="btn-logout">Delete</a>
+        </div>
+    <% }) %>
+</div>
+<bottombar class="p-3 flex flex-row-reverse ">
+    <a href="/notes/create" class="btn-primary">Create</a>
+</bottombar>

@@ -16,7 +16,8 @@ const strategyOpts = {
 
 const cookieOpts = {
     httpOnly: true,
-    sameSite: "lax"
+    sameSite: "lax",
+    maxAge: 3600 * 1000
 }
 
 passport.use(new JWTStrategy(strategyOpts, async function (payload, done) {
@@ -29,12 +30,12 @@ exports.authenticate = function () {
             if (err) return next(err);
 
             if (!user) {
-                req.isAuthenticated = false;
-                return next();
+                req.authenticated = false;
+                return res.redirect("/login");
             }
 
             req.user = user;
-            req.isAuthenticated = true;
+            req.authenticated = true;
 
             return next();
         })(req, res, next);
