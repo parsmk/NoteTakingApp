@@ -11,6 +11,9 @@ exports.login = async function (req, res) {
     }
 
     try {
+
+        console.log(process.env.SECRET);
+
         await sanitate(req);
         const { username, password } = req.body;
         const candidate = await user.findOne({ username });
@@ -29,7 +32,7 @@ exports.login = async function (req, res) {
 exports.createUser = async function (req, res) {
     const payload = {
         title: "Sign Up",
-        fileName: "signUp"
+        fileName: "signup"
     }
 
     try {

@@ -38,7 +38,7 @@ app.get("/", auth.authenticate(), (req, res) => {
 
 // Establish Connections
 mongoose
-    .connect("mongodb://localhost:27017/noteTakingApp")
+    .connect(process.env.DB_URL)
     .then(() => console.log("MongoDB connected"))
     .catch((err) => console.log("DB Error: ", err));
 

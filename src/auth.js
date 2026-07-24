@@ -11,7 +11,7 @@ const strategyOpts = {
 
         return token;
     },
-    secretOrKey: process.env.secret
+    secretOrKey: process.env.SECRET
 }
 
 const cookieOpts = {
@@ -48,7 +48,7 @@ exports.initializeCookie = function (candidate, res) {
             id: candidate.id,
             username: candidate.username
         },
-        process.env.secret,
+        process.env.SECRET,
         { expiresIn: "1h" }
     );
 
